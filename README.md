@@ -1,21 +1,40 @@
 # starter code
 
-Add the corresponding (one) line under the ``[to fill]`` in ``def forward()`` of the class for ffnn.py and rnn.py
+# CS4375 Assignment - Neural Networks for Sentiment Analysis
 
-Feel free to modify other part of code, they are just for your reference.
+## Overview
+This project implements two neural network models (FFNN and RNN) to predict Yelp review star ratings (1-5). The main task was completing the `forward()` function in both models.
 
----
+## Setup
+```bash
+conda create -n cs4375 python=3.8
+conda activate cs4375
+pip install torch numpy tqdm
+```
 
-One example on running the code:
+## Running the Models
 
 **FFNN**
-
-``python ffnn.py --hidden_dim 10 --epochs 1 ``
-``--train_data ./training.json --val_data ./validation.json``
-
+```bash
+python ffnn.py --hidden_dim 64 --epochs 5 --train_data training.json --val_data validation.json
+```
 
 **RNN**
+```bash
+python rnn.py --hidden_dim 64 --epochs 5 --train_data training.json --val_data validation.json
+```
 
-``python rnn.py --hidden_dim 32 --epochs 10 ``
-``--train_data training.json --val_data validation.json``
+## Results
 
+| Model | Hidden Dim | Epochs | Best Val Accuracy |
+|-------|------------|--------|------------------|
+| FFNN  | 64         | 5      | 59.8%            |
+| FFNN  | 128        | 10     | 61.6%            |
+| RNN   | 64         | 6      | 55.9%            |
+
+## Files
+- `ffnn.py` - Feedforward Neural Network implementation
+- `rnn.py` - Recurrent Neural Network implementation
+- `training.json` - Training data
+- `validation.json` - Validation data
+- `word_embedding.pkl` - Pretrained word embeddings (required for RNN)
